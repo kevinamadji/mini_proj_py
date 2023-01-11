@@ -19,14 +19,31 @@ class CompteBancaire:
         
     def Afficher(self):
         return f"Numero de compte: {self.numCompte}\n Nom: {self.nom}\n Solde: {self.solde} €"
+
+
+
+
+
+class Book:
+    def __init__(self, Title, Author, Price):
+        self.Title = Title
+        self.Author = Author
+        self.Price = Price
+    
+    def View(self):
+        return f"Tittre: {self.Title}\nAuteur: {self.Author}\nPrix: {self.Price}€"
+
+        
     
 
 
-C1 = CompteBancaire(125458714, "Amadji kevin", 1000)
 
+C1 = CompteBancaire(125458714, "Amadji kevin", 1000)
 C1.Versement(1000)
 C1.Retrait(200)
 C1.Agio()
 print(C1.solde)
-
 print(C1.Afficher())
+
+book1 = Book("Le médecin imaginaire ", "Molière", 29)
+print(book1.View())
