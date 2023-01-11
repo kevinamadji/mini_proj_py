@@ -7,8 +7,12 @@ class CompteBancaire:
     def Versement(self, montant):
         self.solde = self.solde + montant
     
-    def Retrait(self, mr): 
-        self.solde = self.solde - mr
+    def Retrait(self, mr):
+        if(self.solde < 0):
+            print("Impossible de faire un retrait car solde inssufisant") 
+        else:
+           self.solde = self.solde - mr 
+        
         
     def Agio(self):
         self.solde = (self.solde) - (self.solde * 0.05)
