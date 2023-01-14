@@ -19,18 +19,29 @@ class Calcul:
     def testPrim(self, nb):
         r = 0
         p = 0
+        pe = "est un nombre premier"
+        ps = "n'est pas un nombre premier"
         for k in range(2, nb):
             r = nb % k
             if (r == 0):
                 p = p + 1
             else:
-                p = p
+                p = p 
+                
         if (p == 0 ):
-            print( "est un nombre premier")
+            print(pe)
         else:
-            print( "n'est pas un nombre premier")
+            print(ps)
     
-    
+# fonction liste des diviseur 
+    def listDiv(self, nbr):
+            l = []
+            div = 0
+            for a in range(2, nbr):
+               div = nbr % a
+               if (div == 0):
+                   l.append(a) 
+            return l
     
     
 c = Calcul()
@@ -38,6 +49,7 @@ c = Calcul()
 print(c.factoriel(3))
 print(c.somme(6))
 print(c.testPrim(20))
+print(c.listDiv(100))
 
         
         
