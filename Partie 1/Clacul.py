@@ -1,18 +1,44 @@
 class Calcul:
     def __init__(self):
         pass
-    
-    def factoriel(self, n):
+# fonction factorielle    
+    def factoriel(self, j):
         f = 1
-        n = i = 1
-        while(i< n):
+        for i in range (1, j+1):
             f = f * i
-            i = i+1
-        return f
+            return f 
+
+# fonction somme     
+    def somme(self, n):
+        s = 0 
+        for m in range (1, n+1):
+            s = s + m
+        return s
+    
+# fonction qui calcule les nombres premiers    
+    def testPrim(self, nb):
+        r = 0
+        p = 0
+        for k in range(2, nb):
+            r = nb % k
+            if (r == 0):
+                p = p + 1
+            else:
+                p = p
+        if (p == 0 ):
+            print( "est un nombre premier")
+        else:
+            print( "n'est pas un nombre premier")
+    
+    
+    
     
 c = Calcul()
 
-print(c.factoriel(5))
+print(c.factoriel(3))
+print(c.somme(6))
+print(c.testPrim(20))
+
         
         
         
