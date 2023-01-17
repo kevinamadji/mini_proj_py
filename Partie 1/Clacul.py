@@ -43,7 +43,15 @@ class Calcul:
                    l.append(a) 
             return l
     
+def demander_nom():
+    repons_nom = ""
+    while repons_nom =="":
+        repons_nom = input("Quel est votre nom")
     
+    return repons_nom
+
+nom = demander_nom()
+
 c = Calcul()
 
 print(c.factoriel(3))
