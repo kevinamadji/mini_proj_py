@@ -1,4 +1,6 @@
-class File:
+from abc import ABC
+
+class File(ABC):
     def __init__(self, name, size):
         self.name = name
         self.size = size
@@ -7,9 +9,9 @@ class File:
         print()
         
         
-class Image(File):
-    def __init__(self, name, size):
-        super().__init__(name, size)
+class ImageFile(File):
+    def display(self):
+        print(f"Fichier Image {self.name}")
     
 class User:
     def __init__(self, username, password):
@@ -17,24 +19,33 @@ class User:
         self.password = password
         
     def login(self):
-        pass 
+        print(f"L'utilisateur {self.username} s'est connecter avec succès ")
     
-    def post(self, thread, content):
-        pass             
+    def post(self, thread, content, file = None):
+        """Poste un message dans un fil de discussion."""
+        if file:
+            post = FilePost(self, "aujourd'hui", content, file)
+        
+        else:
+            post = Post(user=self, time_posted= "aujourd'hui", content= content)     
+        thread.add_post(post)     
+        return post  
     
     def make_thread(self, title, content):
-        pass
-    
+        post = Post(self, "aujourd'hui", content)
+        return Thread(title, "aujourd'hui", post)
+
 
 class Moderator(User): 
-    def __init__(self, username, password):
-        super().__init__(username, password)
+
             
     def edits(self,post, content):
-        pass
+        post.content = content
+        
     
     def delete(self, thread, post):
-        pass
+        index = thread.posts.index(post)
+        del thread.post[index]
     
 
 class Post:
@@ -44,7 +55,8 @@ class Post:
         self.content = content
     
     def display(self):
-        pass
+        print(f"Message posté par {self.user} le {self.time_posted} \n")
+        print(self.content)
     
 
 class FilePost(Post):
@@ -52,15 +64,28 @@ class FilePost(Post):
         super().__init__(user, time_posted, content)
         self.file = file
         
+    def display(self):
+        super().display()
+        print("Pièce joint:")
+        self.file.display()
 class Thread:
-    def __init__(self, title, time_posted, posts):
+    def __init__(self, title, time_posted, post):
         self.title = title
         self.time_posted = time_posted
-        self.posts = [Post]
+        self.posts = [post]
         
+    
     def display(self):
-        pass
+        """Affiche le fil de discussion."""
+        print("----- THREAD -----")
+        print(f"titre: {self.title}, date: {self.time_posted}")
+        print()
+        for post in self.posts:
+            post.display()
+            print()
+        print("------------------")
+    
     
     def add_post(self, post):
-        pass
+        self.posts.append(post)
         
